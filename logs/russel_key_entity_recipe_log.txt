@@ -1,0 +1,73 @@
+2026-Apr-26-03:52:53 |  INFO   | (1.1) Log Setup Completed Successfully : Logs will now be written to log file.
+2026-Apr-26-03:52:53 |  INFO   | Start Time : 2026-Apr-26-03:52:53
+
+2026-Apr-26-03:52:53 |  INFO   | ================================= Step 1 : Importing Necessary Libraries =================================
+2026-Apr-26-03:53:00 |  INFO   | (1.2) The libraries were imported successfully.
+
+2026-Apr-26-03:53:00 |  INFO   | ================================ Step 2 : Data Ingestion and Preparation =================================
+2026-Apr-26-03:53:00 |  DEBUG  | (2.1.1) Custom Reusable Function - Loads a JSON file and converts it to a Pandas DataFrame.
+2026-Apr-26-03:53:00 |  INFO   | (2.1.2) The JSON File has been read and converted to a Pandas DataFrame successfully.
+2026-Apr-26-03:53:00 |  INFO   | (2.1.3) The DataFrame has 285 Observations and 2 Features ['input', 'pos'].
+2026-Apr-26-03:53:00 |  INFO   | (2.1.4) Total Number of Missing Values in our Dataset: 0 Missing Values (0.00%).
+2026-Apr-26-03:53:00 |  INFO   | (2.2.1) Tokenization of the Input and POS features completed successfully.
+2026-Apr-26-03:53:00 | WARNING | (2.2.2) Mismatch is found, Number of Observations with Mismatch: 5 Observations.
+2026-Apr-26-03:53:00 |  INFO   | (2.2.3) Success: Unique POS Labels ('quantity', 'ingredient', 'unit') have been identified successfully.
+2026-Apr-26-03:53:00 |  DEBUG  | (2.2.4) The Indexes that require Cleaning and Formatting in the DataFrame [Length Mismatch]: [17, 27, 79, 164, 207]
+2026-Apr-26-03:53:00 |  INFO   | (2.2.5) Observations with Irrelevant Recipe Data (Length Mismatch) was removed from our Dataset.
+2026-Apr-26-03:53:01 |  INFO   | (2.2.6) Success: Recomputed the Input and POS Length (After Dropping Mismatch).
+2026-Apr-26-03:53:01 |  INFO   | (2.2.7) Success: Re-Validation Passed - No mismatch is present in the data.
+
+2026-Apr-26-03:53:01 |  INFO   | ================================== Step 3 : Train Validation Data Split ==================================
+2026-Apr-26-03:53:01 |  INFO   | (3.1.1) Success: Training and Validation Split performed successfully [70:30].
+2026-Apr-26-03:53:01 |  DEBUG  | (3.1.2) Inspection of the first five observations: 'train_df' and 'val_df'
+2026-Apr-26-03:53:01 |  INFO   | (3.1.3) Extraction: [X_train, y_train, X_val, y_val] Extracted Successfully (Standard Practice & Requirement).
+2026-Apr-26-03:53:01 |  INFO   | (3.1.4) Unique Labels (y_train): {'quantity', 'ingredient', 'unit'}, Total Number of Unique Labels (y_train): 3 Labels.
+
+2026-Apr-26-03:53:01 |  INFO   | ====================== Step 4 : Exploratory Recipe Data Analysis on Training Dataset =====================
+2026-Apr-26-03:53:01 |  DEBUG  | (4.1) Custom Reusable Function - Flattening Nested List.
+2026-Apr-26-03:53:01 |  INFO   | (4.2) Flattened lists created for Training dataset EDA. Length Validation Successful [Length Matched].
+2026-Apr-26-03:53:01 |  INFO   | (4.3) Validation and Categorizing Tokens into Labels ['ingredient', 'quantity', 'unit'] Successful.
+2026-Apr-26-03:53:01 |  DEBUG  | (4.4) Custom Reusable Function - Top 10 Most Frequent Items for ('quantity', 'ingredient', 'unit').
+2026-Apr-26-03:53:01 |  DEBUG  | (4.5) Custom Horizontal Bar Chart Reusable Function - Analyzing categorical features.
+2026-Apr-26-03:53:01 |  DEBUG  | (4.6) Visualizing: Top 10 Most Frequent Ingredients [Training Dataset]
+2026-Apr-26-03:53:02 |  DEBUG  | (4.7) Visualizing: Top 10 Most Frequent Units [Training Dataset]
+
+2026-Apr-26-03:53:02 |  INFO   | ===================== Step 5 : Exploratory Recipe Data Analysis on Validation Dataset ====================
+2026-Apr-26-03:53:02 |  INFO   | (5.1) Validation and Categorizing into ['ingredient', 'quantity', 'unit'] Successful.
+2026-Apr-26-03:53:02 |  DEBUG  | (5.2) Visualizing: Top 10 Most Frequent Ingredients [Validation Dataset]
+2026-Apr-26-03:53:03 |  DEBUG  | (5.3) Visualizing: Top 10 Most Frequent Units [Validation Dataset]
+
+2026-Apr-26-03:53:03 |  INFO   | =============================== Step 6 : Feature Extraction For CRF Model ================================
+2026-Apr-26-03:53:03 |  DEBUG  | (6.1.1.1) Unit Keywords and Short Forms: Defined Successfully
+2026-Apr-26-03:53:03 |  DEBUG  | (6.1.1.2) Quantity Keywords: Defined Successfully
+2026-Apr-26-03:53:03 |  DEBUG  | (6.1.1.3) Quantity Pattern Recognition - Regex [Unit Test]: Successful.
+2026-Apr-26-03:53:03 |  INFO   | (6.1.1.4) Quantity Pattern Recognition - Regex [Real-World Test]: Successful.
+2026-Apr-26-03:53:04 |  INFO   | (6.1.1.5) spaCy model loaded successfully.
+2026-Apr-26-03:53:04 |  DEBUG  | (6.1.2.1) word2features --> Defined Feature Functions for CRF Model.
+2026-Apr-26-03:53:04 |  DEBUG  | (6.1.2.2) sent2features --> Generated sentence-level feature wrapper.
+2026-Apr-26-03:53:13 |  INFO   | (6.1.3.1) Feature Transformation --> Generated `X_train_features`, `X_val_features`.
+2026-Apr-26-03:53:13 |  INFO   | (6.1.3.2) Label Extraction --> Generated `y_train_labels`, `y_val_labels`.
+2026-Apr-26-03:53:13 |  INFO   | (6.1.3.3) Data Integrity Check --> Verification Successful: Feature and Label counts match perfectly.
+2026-Apr-26-03:53:13 |  INFO   | (6.1.3.4) Computing Base Weights --> Inverse Frequency Method implemented for Class Imbalance.
+2026-Apr-26-03:53:13 |  DEBUG  | (6.1.3.5) Function Defined for Weight Injection: `extract_features_with_class_weights`
+2026-Apr-26-03:53:13 |  INFO   | (6.1.3.6) The Inverse Frequency Weights of the Ground Truth Labels are mapped to the Training/Validation Set.
+
+2026-Apr-26-03:53:13 |  INFO   | ================================== Step 7 : Model Building and Training ==================================
+2026-Apr-26-03:53:14 |  INFO   | (7.1) Conditional Random Field (CRF) Model initialized and trained successfully.
+2026-Apr-26-03:53:14 |  INFO   | (7.2) Training Evaluation: Classification Report and Confusion Matrix Created Successfully.
+2026-Apr-26-03:53:14 |  INFO   | (7.3) Model Persistence: Trained CRF Model saved Successfully as `crf_model.pkl`
+
+2026-Apr-26-03:53:14 |  INFO   | ================================ Step 8 : Prediction and Model Evaluation ================================
+2026-Apr-26-03:53:14 |  INFO   | (8.1) Pre-Trained CRF Model: Loaded Successfully.
+2026-Apr-26-03:53:15 |  INFO   | (8.2) Validation Evaluation: Classification Report and Confusion Matrix Created Successfully.
+
+2026-Apr-26-03:53:15 |  INFO   | =============================== Step 9 : Error Analysis on Validation Data ===============================
+2026-Apr-26-03:53:15 |  INFO   | (9.1) Labels flattened and error_data initialized successfully.
+2026-Apr-26-03:53:15 | WARNING | (9.2) Successfully Captured and Isolated 3 Errors/Misclassifications.
+2026-Apr-26-03:53:15 |  INFO   | (9.3) Pandas DataFrame: Accuracy Report [Validation Error Analysis]
+2026-Apr-26-03:53:15 |  INFO   | (9.4) MACRO and MICRO Level Analysis [Overall & Label-Wise] [Validation Error Analysis]
+
+2026-Apr-26-03:53:15 |  INFO   | =============================== Step 10 : NLP Pipeline Completion Summary ================================
+2026-Apr-26-03:53:15 |  INFO   | (10.1) End Time : 2026-Apr-26-03:53:15
+2026-Apr-26-03:53:15 |  INFO   | (10.2) NLP Pipeline Total Duration (Runtime) : 0 minutes and 22 seconds
+2026-Apr-26-03:53:15 |  INFO   | (10.3) NLP Pipeline (CRF Model) ---> Completed Successfully.
