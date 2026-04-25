@@ -10,6 +10,7 @@ By leveraging a Conditional Random Field (CRF) algorithm optimized with the L-BF
 * **Python**
 * **Pandas, NumPy** (Data ingestion & manipulation)
 * **spaCy** (Linguistic feature extraction & POS tagging)
+* **Scikit-learn** (Data splitting & evaluation metrics)
 * **sklearn-crfsuite** (CRF model building & training)
 * **Joblib** (Model serialization)
 * **Matplotlib, Seaborn** (Data visualization & confusion matrices)
